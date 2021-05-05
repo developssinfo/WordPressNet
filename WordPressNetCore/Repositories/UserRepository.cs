@@ -39,6 +39,11 @@ namespace WordPressNetCore.Repositories
             return dbContext.User.FirstOrDefault(u => u.Id == id);
         }
 
+        public List<User> GetUsersByName(string name)
+        {
+            return dbContext.User.Where(u => u.UserName.ToUpper().Contains(name)).ToList();
+        }
+
         public void Insert(User user)
         {
             dbContext.Instance.Add(user);

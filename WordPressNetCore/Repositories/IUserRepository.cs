@@ -6,12 +6,8 @@ using WordPressNetCore.Models;
 
 namespace WordPressNetCore.Repositories
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User>
     {
-        public void Insert(User user);
-        public List<User> GetAll();
-        public User GetById(int id);
-        public User Update(User user);
-        public bool Delete(int id);
+        public List<User> GetUsersByName(string name);
     }
 }

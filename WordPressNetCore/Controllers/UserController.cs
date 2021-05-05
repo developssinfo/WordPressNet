@@ -22,35 +22,42 @@ namespace WordPressNetCore.Controllers
         }
 
         // GET: api/<UserController>
-        [HttpGet] //List of Users
+        [HttpGet]
         public IEnumerable<User> Get()
         {
             return repository.GetAll();
         }
 
         // GET api/<UserController>/5
-        [HttpGet("{id}")] // Get a user by id
+        [HttpGet("{id}")]
         public User Get(int id)
         {
             return repository.GetById(id);
         }
 
+        // GET api/<UserController>/5
+        [HttpGet("getUsersByName/{name}")]
+        public List<User> GetUsersByName(string name)
+        {
+            return repository.GetUsersByName(name);
+        }
+
         // POST api/<UserController>
-        [HttpPost] // Save a user
+        [HttpPost]
         public void Post([FromBody] User value)
         {
             repository.Insert(value);
         }
 
         // PUT api/<UserController>/5
-        [HttpPut] // Update a user
+        [HttpPut]
         public User Put([FromBody] User value)
         {
             return repository.Update(value);
         }
 
         // DELETE api/<UserController>/5
-        [HttpDelete("{id}")] // Delete a user
+        [HttpDelete("{id}")]
         public bool Delete(int id)
         {
             return repository.Delete(id);

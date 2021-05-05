@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using WordPressNetCore.Models;
 using WordPressNetCore.Repositories;
 
 namespace WordPressNetCore
@@ -27,7 +28,7 @@ namespace WordPressNetCore
 
             // Register dependencies
             services.AddScoped<IUserRepository, UserRepository>();
-
+            
             services.AddControllersWithViews();
 
             services.AddControllers();
