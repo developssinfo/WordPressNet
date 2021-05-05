@@ -15,50 +15,45 @@ namespace WordPressNetCore.Controllers
     public class UserController : ControllerBase
     {
         IUserRepository repository;
-        /*public UserController(IServiceProvider provider)
-        {
-            //repository = provider.GetService(typeof(UserRepository));
-
-        }*/
 
         public UserController(IUserRepository repository)
         {
-            //repository = provider.GetService(typeof(UserRepository));
             this.repository = repository;
         }
 
         // GET: api/<UserController>
         [HttpGet] //List of Users
-        public IEnumerable<string> Get()
+        public IEnumerable<User> Get()
         {
-            return new string[] { "value1", "value2" };
+            return repository.GetAll();
         }
 
         // GET api/<UserController>/5
         [HttpGet("{id}")] // Get a user by id
-        public string Get(int id)
+        public User Get(int id)
         {
-            return "value";
+            return repository.GetById(id);
         }
 
         // POST api/<UserController>
         [HttpPost] // Save a user
         public void Post([FromBody] User value)
         {
-            //var userRepository = new UserRepository();
             repository.Insert(value);
         }
 
         // PUT api/<UserController>/5
-        [HttpPut("{id}")] // Update a user
-        public void Put(int id, [FromBody] string value)
+        [HttpPut] // Update a user
+        public User Put([FromBody] User value)
         {
+            return repository.Update(value);
         }
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")] // Delete a user
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            return repository.Delete(id);
         }
     }
 }
