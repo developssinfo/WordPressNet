@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
+using WordPressNetCore.Repositories;
 
 namespace WordPressNetCore
 {
@@ -20,15 +22,22 @@ namespace WordPressNetCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
-                    .EnableSensitiveDataLogging(true)
-                    .UseLoggerFactory(MyLoggerFactory)
-                    );
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen();
+
+            // Register dependencies
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddControllersWithViews();
 
             services.AddControllers();
+
+            // Register Entity Framework to be injected
+            services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+                       .EnableSensitiveDataLogging(true)
+                       .UseLoggerFactory(MyLoggerFactory)
+                    );
         }
 
         public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder =>
@@ -49,6 +58,17 @@ namespace WordPressNetCore
             }
 
             app.UseHttpsRedirection();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 

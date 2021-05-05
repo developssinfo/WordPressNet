@@ -1,18 +1,27 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading.Tasks;
+using WordPressNetCore.Models;
 
 namespace WordPressNetCore
 {
-    public class ApplicationDbContext : DbContext
+    //public class ApplicationDbContext : DbContext
+    //{
+    //    public ApplicationDbContext([NotNull] DbContextOptions options):base(options)
+    //    {
+    //    }
+
+    //    public DbSet<User> User { get; set; }
+
+    //}
+
+    public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
-        public ApplicationDbContext([NotNullAttribute] DbContextOptions options):base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base (options)
         {
 
         }
 
+        public DbContext Instance => this;
+        public DbSet<User> User { get; set; }
     }
 }
