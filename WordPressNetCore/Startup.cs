@@ -26,6 +26,12 @@ namespace WordPressNetCore
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen();
 
+            // Enable CORS
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
+
             // Register dependencies
             services.AddScoped<IUserRepository, UserRepository>();
             
@@ -70,6 +76,9 @@ namespace WordPressNetCore
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
                 c.RoutePrefix = string.Empty;
             });
+
+            // App will use CORS enabled
+            app.UseCors(options => options.AllowAnyOrigin());
 
             app.UseRouting();
 

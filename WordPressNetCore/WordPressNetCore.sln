@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPressNetCore", "WordPressNetCore.csproj", "{648F41D1-F97B-4AF2-9BCE-B8BFA0EF486E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordPressNetCore", "WordPressNetCore.csproj", "{648F41D1-F97B-4AF2-9BCE-B8BFA0EF486E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordPressNetCore.Tests", "..\WordPressNetCore.Tests\WordPressNetCore.Tests.csproj", "{83945895-4C9C-4FBD-B383-E330A149C7B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{648F41D1-F97B-4AF2-9BCE-B8BFA0EF486E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{648F41D1-F97B-4AF2-9BCE-B8BFA0EF486E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{648F41D1-F97B-4AF2-9BCE-B8BFA0EF486E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83945895-4C9C-4FBD-B383-E330A149C7B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83945895-4C9C-4FBD-B383-E330A149C7B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83945895-4C9C-4FBD-B383-E330A149C7B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83945895-4C9C-4FBD-B383-E330A149C7B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
